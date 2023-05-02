@@ -5,14 +5,13 @@
 }
 
 :root {
-    --sides-color: rgba(0, 236, 0, 1.0);
-    --shadow-color: rgba(0, 255, 0, 1.0);
-    --shadow-color-1: rgba(0, 255, 0, 0.2);
-    --shadow-color-2: rgba(0, 255, 0, 0.4);
-    --shadow-color-3: rgba(0, 255, 0, 0.6);
-    --shadow-color-4: rgba(0, 255, 0, 0.8);
-    --shadow-color-5: rgba(0, 255, 0, 1.0);
-    --cube-brightness: 0.1;
+    --sides-color: black;
+    --shadow-color: black;
+    --shadow-color-1: black;
+    --shadow-color-2: black;
+    --shadow-color-3: black;
+    --shadow-color-4: black;
+    --shadow-color-5: black;
 }
 
 body {
@@ -31,7 +30,6 @@ body {
     transform-style: preserve-3d;
     transform: rotateX(-30deg);
     animation: animate 4s linear infinite;
-    
 }
 
 @keyframes animate {
@@ -50,19 +48,29 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d;
-    
+    transform-style: preserve-3d;   
 }
 
-.cube div span {
+.cube .faces span {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(#151515, var(--sides-color));
+    background: var(--sides-color);
     transform: rotateY(calc(90deg * var(--i))) translateZ(150px);
-    filter: brightness(var(--cube-brightness));
+    transition: background 2s linear;
+}
+
+.cube .gradient-faces span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#151515, transparent);
+    transform: rotateY(calc(90deg * var(--i))) translateZ(150px);
+    z-index: 99999;
 }
 
 .top {
@@ -73,7 +81,6 @@ body {
     height: 300px;
     background: #151515;
     transform: rotateX(90deg) translateZ(150px);
-    /* filter: brightness(var(--cube-brightness)); */
 }
 
 .top::before {
@@ -84,9 +91,10 @@ body {
     width: 100%;
     height: 100%;
     background: var(--shadow-color);
-    transform: translateZ(-380px);  
+    transform: translateZ(-380px);
+    transition: background 2s linear, box-shadow 2s linear;
     
-    filter: blur(20px) brightness(var(--cube-brightness));
+    filter: blur(20px);
     
     box-shadow: 0 0 120px var(--shadow-color-1),
                 0 0 200px var(--shadow-color-2),
